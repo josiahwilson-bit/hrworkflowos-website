@@ -1,0 +1,149 @@
+/* HR Workflow OS — static site stylesheet
+   Zero external resources: system font stack only, no web fonts, no embeds.
+   Contrast targets: body text #1a1a1a on #ffffff (~17.9:1); links #0b3d91 on
+   #ffffff (~8.6:1); muted text #595959 on #ffffff (~7.0:1). All exceed 4.5:1. */
+
+:root {
+  --ink: #1a1a1a;
+  --muted: #595959;
+  --link: #0b3d91;
+  --link-visited: #5a2a82;
+  --focus: #0b3d91;
+  --rule: #d9d9d9;
+  --wash: #f5f5f5;
+  --maxw: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #ffffff;
+  color: var(--link);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+a { color: var(--link); }
+a:visited { color: var(--link-visited); }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  padding: 1rem 1.25rem;
+}
+.site-header .brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.site-header .brand:visited { color: var(--ink); }
+
+.site-nav ul {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+.site-nav a { text-decoration: none; }
+.site-nav a:hover { text-decoration: underline; }
+.site-nav a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+h1 { font-size: 1.9rem; line-height: 1.25; margin-top: 0; }
+h2 { font-size: 1.4rem; margin-top: 2.25rem; }
+h3 { font-size: 1.15rem; margin-top: 1.75rem; }
+
+.lede { font-size: 1.2rem; }
+
+.fact-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.note {
+  background: var(--wash);
+  border-left: 4px solid var(--rule);
+  padding: 0.9rem 1.1rem;
+  margin: 1.5rem 0;
+}
+.note p { margin: 0.4rem 0; }
+
+.placeholder {
+  border: 1px dashed var(--muted);
+  padding: 0.9rem 1.1rem;
+  margin: 1.5rem 0;
+  color: var(--muted);
+}
+
+ol.steps, ul.clean { padding-left: 1.4rem; }
+ol.steps li, ul.clean li { margin-bottom: 0.6rem; }
+
+.gates { counter-reset: gate; list-style: none; padding-left: 0; }
+.gates li {
+  counter-increment: gate;
+  margin-bottom: 0.5rem;
+  padding-left: 2.2rem;
+  position: relative;
+}
+.gates li::before {
+  content: counter(gate);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 1.25rem 2.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.site-footer .foot-inner { max-width: var(--maxw); margin: 0 auto; }
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+@media (max-width: 26rem) {
+  body { font-size: 1rem; }
+  h1 { font-size: 1.6rem; }
+  main { padding: 1.5rem 1rem 2.5rem; }
+}
